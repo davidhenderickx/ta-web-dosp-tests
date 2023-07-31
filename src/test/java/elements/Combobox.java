@@ -13,10 +13,12 @@ public class Combobox extends BaseElement {
 	
 	public Combobox(Locator locator) {
 		this.by = locator.getLocator();
+		elementLocator = locator.getLocator();
 	}
 	
 	public Combobox(By by) {
 		this.by = by;
+		elementLocator = by;
 	}
 
 	public void selectByVisibleText(String text) {
@@ -25,6 +27,7 @@ public class Combobox extends BaseElement {
 		waitUntilElementIsVisible(by, defaultTimeOut);
 		select = new Select(getWebElement(by));
 		select.selectByVisibleText(text);	
+		Log.debug("Selected '" + text + "' on combobox " + by.toString());
 	}
 
 }

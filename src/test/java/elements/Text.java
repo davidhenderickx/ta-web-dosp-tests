@@ -12,10 +12,12 @@ public class Text extends BaseElement {
 	
 	public Text(Locator locator) {
 		this.by = locator.getLocator();
+		elementLocator = locator.getLocator();
 	}
 	
 	public Text(By by) {
 		this.by = by;
+		elementLocator = by;
 	}
 
 	public String getText() {

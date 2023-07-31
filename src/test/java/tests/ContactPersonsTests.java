@@ -16,7 +16,8 @@ public class ContactPersonsTests extends BaseTest {
 	public void createNewContactPerson(Method method) {
 		login(null, null);
 		menuPage.ContactPersons();
-		
+		contactPersonsPage.isShown();
+		contactPersonsPage.createNewContactPerson();
 		
 	}
 

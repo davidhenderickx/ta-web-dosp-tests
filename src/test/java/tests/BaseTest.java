@@ -8,6 +8,7 @@ import frmwrk.drivers.DriverManager;
 import frmwrk.enums.Environment;
 import frmwrk.settings.RunSettings;
 import pages.AdminPage;
+import pages.ContactPersonsPage;
 import pages.LoginPage_Elements;
 import pages.LoginPage;
 import pages.LoginPage_PageFactory;
@@ -17,6 +18,7 @@ import pages.HomePage;
 public class BaseTest extends frmwrk.testbase.BaseTest {
 
 	public AdminPage adminPage;
+	public ContactPersonsPage contactPersonsPage;
 	public LoginPage loginPage;
 	public MenuPage menuPage;
 	public HomePage homePage;
@@ -34,6 +36,7 @@ public class BaseTest extends frmwrk.testbase.BaseTest {
 		loginPage = new LoginPage();
 		menuPage = new MenuPage();
 		homePage = new HomePage();
+		contactPersonsPage = new ContactPersonsPage();
 
 		DriverManager.getDriver().get("https://dosp-hsx-uat.crm4.dynamics.com/");
 

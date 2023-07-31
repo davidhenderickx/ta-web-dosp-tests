@@ -7,23 +7,23 @@ import org.openqa.selenium.WebElement;
 import frmwrk.locators.Locator;
 import frmwrk.reporters.Log;
 
-public class Field extends BaseElement {
+public class SearchField extends BaseElement {
 	
 	protected By by;
 	
-	public Field(Locator locator) {
+	public SearchField(Locator locator) {
 		this.by = locator.getLocator();
 		elementLocator = locator.getLocator();
 	}
 	
-	public Field(By by) {
+	public SearchField(By by) {
 		this.by = by;
 		elementLocator = by;
 	}
 
-	@Override
-	public void setText(String text) {
-		Log.debug("Setting the text '" + text + "' on element " + by.toString());
+
+	public void setText(String searchText, String selectText, int searchResult) {
+		//Log.debug("Setting the text '" + text + "' on element " + by.toString());
 		waitUntilElementIsPresent(by, defaultTimeOut);
 		waitUntilElementIsVisible(by, defaultTimeOut);
 		WebElement element = getWebElement(by);
@@ -33,10 +33,10 @@ public class Field extends BaseElement {
 		waitForMilliseconds(200);
 		element.clear();
 		waitForMilliseconds(200);
-		element.sendKeys(text);
+		//element.sendKeys(text);
 		waitForMilliseconds(200);
 		element.sendKeys(Keys.TAB);	
-		Log.debug("Text set of " + by.toString() + ": " + text);
+		//Log.debug("Text set of " + by.toString() + ": " + text);
 	}
 
 	

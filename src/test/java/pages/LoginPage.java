@@ -40,7 +40,7 @@ public class LoginPage extends BasePage {
             }
             prop.load(input);
             email = prop.getProperty("app.usermail");
-            pass = prop.getProperty("app.userspass");
+            pass = prop.getProperty("app.userpass");
 		} catch (IOException ex) {
             ex.printStackTrace();
         }
