@@ -12,13 +12,13 @@ public class Combobox extends BaseElement {
 	protected Select select;
 	
 	public Combobox(Locator locator) {
+		super(locator);
 		this.by = locator.getLocator();
-		elementLocator = locator.getLocator();
 	}
 	
 	public Combobox(By by) {
+		super(by);
 		this.by = by;
-		elementLocator = by;
 	}
 
 	public void selectByVisibleText(String text) {

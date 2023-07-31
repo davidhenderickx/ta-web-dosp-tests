@@ -12,13 +12,13 @@ public class Field extends BaseElement {
 	protected By by;
 	
 	public Field(Locator locator) {
+		super(locator);
 		this.by = locator.getLocator();
-		elementLocator = locator.getLocator();
 	}
 	
 	public Field(By by) {
+		super(by);
 		this.by = by;
-		elementLocator = by;
 	}
 
 	@Override

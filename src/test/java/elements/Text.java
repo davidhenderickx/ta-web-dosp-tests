@@ -11,13 +11,13 @@ public class Text extends BaseElement {
 	protected By by;
 	
 	public Text(Locator locator) {
+		super(locator);
 		this.by = locator.getLocator();
-		elementLocator = locator.getLocator();
 	}
 	
 	public Text(By by) {
+		super(by);
 		this.by = by;
-		elementLocator = by;
 	}
 
 	public String getText() {

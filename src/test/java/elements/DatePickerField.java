@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import frmwrk.locators.Locator;
@@ -19,26 +18,37 @@ public class DatePickerField extends BaseElement {
 	private String datePickerXpath = "//div[contains(@id, 'DatePicker-Callout')]";
 	private String monthPickerXpath = datePickerXpath + "//div[contains(@class,'monthPickerWrapper')]";
 	
+	private Button btnMonthAndYear = new Button(By.xpath(datePickerXpath + "//button[contains(@class,'monthAndYear')]"));
+	
+	private BaseElement divMonthPicker = new BaseElement(By.xpath(monthPickerXpath));
 	private Button btnCurrentYear = new Button(By.xpath(monthPickerXpath + "//button[contains(@class,'currentItemButton')]/span"));
 	private Button btnPrevYear = new Button(By.xpath(monthPickerXpath + "//div[contains(@class,'navigationButtonsContainer')]/button/i[@data-icon-name='Up']"));
 	private Button btnNextYear = new Button(By.xpath(monthPickerXpath + "//div[contains(@class,'navigationButtonsContainer')]/button/i[@data-icon-name='Down']"));
 	
 	
 	public DatePickerField(Locator locator) {
-		this.by = locator.getLocator();
-		elementLocator = locator.getLocator();
+		super(locator);
+		by = locator.getLocator();
 	}
 	
 	public DatePickerField(By by) {
+		super(by);
 		this.by = by;
-		elementLocator = by;
+	}
+	
+	
+	public void setDateInField(String date) {
+		Log.debug("Setting the date to '" + date + "' on element " + by.toString());
+		Field field = new Field(by);
+		field.setText(date);
+		Log.debug("Date has been set in the element");
 	}
 
 	/**
 	 * Setting the date.
 	 * @param date given in dd/MM/YYYY format
 	 */
-	public void setDate(String date) {
+	public void setDateByUsingDatePicker(String date) {
 		Log.debug("Setting the date to '" + date + "' on element " + by.toString());
 		
 		Date requestedDate = null;
@@ -55,24 +65,23 @@ public class DatePickerField extends BaseElement {
 		Field dateField = new Field(by);
 		
 		dateField.click();
+		btnMonthAndYear.waitUntilElementIsVisible(defaultTimeOut);
 		
-		btnCurrentYear.waitUntilElementIsVisible(30000);
+		//Check if the big datepicker view is available (which is quicker)'
+		if (!divMonthPicker.isElementVisible(2000)) {
+			btnMonthAndYear.click();
+		}
+			
+		btnCurrentYear.waitUntilElementIsVisible(defaultTimeOut);
 		
 		SimpleDateFormat requestedDateYear = new SimpleDateFormat("yyyy");
 		setYear(Integer.parseInt(requestedDateYear.format(requestedDate)));
 		
-		waitForMilliseconds(10000);
-		
 		SimpleDateFormat requestedDateMonth = new SimpleDateFormat("MM");
 		setMonth(Integer.parseInt(requestedDateMonth.format(requestedDate)));
 		
-		waitForMilliseconds(10000);
-		
 		SimpleDateFormat requestedDateDay = new SimpleDateFormat("dd");
-		setDay(Integer.parseInt(requestedDateDay.format(requestedDate)));
-		
-		waitForMilliseconds(10000);
-		
+		setDay(Integer.parseInt(requestedDateDay.format(requestedDate)));	
 	}
 	
 	
@@ -92,6 +101,7 @@ public class DatePickerField extends BaseElement {
 				Log.debug("Selected year ("+ selectedYear + ") is higher then requested year (" + year + "). Clicking on the previous button.");
 				btnPrevYear.click();	
 			}
+			waitForMilliseconds(500);
 		} while (!yearSelected);		
 		Log.debug("Correct year selected");	
 	}

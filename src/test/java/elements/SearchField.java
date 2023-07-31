@@ -5,20 +5,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import frmwrk.locators.Locator;
-import frmwrk.reporters.Log;
 
 public class SearchField extends BaseElement {
 	
 	protected By by;
 	
 	public SearchField(Locator locator) {
+		super(locator);
 		this.by = locator.getLocator();
-		elementLocator = locator.getLocator();
 	}
 	
 	public SearchField(By by) {
+		super(by);
 		this.by = by;
-		elementLocator = by;
 	}
 
 

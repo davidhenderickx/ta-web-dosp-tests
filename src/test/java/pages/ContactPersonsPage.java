@@ -32,6 +32,8 @@ public class ContactPersonsPage extends BasePage {
 	DatePickerField dpfldFrom = new DatePickerField(By.xpath("//input[@data-id='dosp_from.fieldControl-date-time-input']"));
 	DatePickerField dpfldTo = new DatePickerField(By.xpath("//input[@data-id='dosp_until.fieldControl-date-time-input']"));
 	
+	Button btnSaveNewContactPerson = new Button(By.xpath("//button[@data-id='contact|NoRelationship|Form|Mscrm.Form.contact.Save']"));
+	Button btnSaveAndCloseNewContactPerson = new Button(By.xpath("//button[@data-id='contact|NoRelationship|Form|Mscrm.Form.contact.SaveAndClose']"));
 	
 	
 	public boolean isShown() {
@@ -39,9 +41,13 @@ public class ContactPersonsPage extends BasePage {
 		return btnNewContactPerson.isElementVisible();
 	}
 	
-	public void createNewContactPerson() {
-		Log.info("Creating a new contact person");
+	public void openNewContactPersonForm() {
+		Log.info("Opening the new contact person form");
 		btnNewContactPerson.click();
+	}
+	
+	public void fillInNewContactPersonForm() {
+		Log.info("Filling in the new contact person form");
 		fldFirstName.setText("David");
 		fldLastName.setText("Henderickx");
 		cbxLanguage.selectByVisibleText("Nederlands");
@@ -51,8 +57,20 @@ public class ContactPersonsPage extends BasePage {
 		fldTelephone.setText("03888123458");
 		fldMobilePhone.setText("0494474747");
 		fldSalutation.setText("Mr.");
-		dpfldFrom.setDate("05/03/2021");
+		dpfldFrom.setDateByUsingDatePicker("05/03/2021");
 		
 	}
+	
+	public void saveNewContactPerson() {
+		Log.info("Saving the new contact person");
+		btnSaveNewContactPerson.click();
+	}
+	
+	public void saveAndCloseNewContactPerson() {
+		Log.info("Saving and closing the new contact person ");
+		btnSaveAndCloseNewContactPerson.click();
+	}
+	
+	
 
 }

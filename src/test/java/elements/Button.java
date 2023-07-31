@@ -9,15 +9,15 @@ public class Button extends BaseElement {
 	
 	protected By by;
 	
-	
 	public Button(Locator locator) {
+		super(locator);
 		this.by = locator.getLocator();
-		elementLocator = locator.getLocator();
+		
 	}
 	
 	public Button(By by) {
+		super(by);
 		this.by = by;
-		elementLocator = by;
 	}
 
 	public void click() {
