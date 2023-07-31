@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Chrome Test Suite" parallel = "methods" thread-count="3">
+    <listeners>
+        <listener class-name="frmwrk.listeners.TestListener"/>
+    </listeners>
+    <parameter name="ta.run.platform" value="WEB"/>
+    <parameter name="ta.web.browser" value="CHROME"/>
+    <test name="LoginTest" >
+        <classes>
+            <class name="tests.LoginTests"/>
+        </classes>
+    </test>
+</suite>
