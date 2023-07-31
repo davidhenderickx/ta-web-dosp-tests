@@ -1,5 +1,9 @@
 package pages;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import frmwrk.drivers.DriverManager;
@@ -13,6 +17,7 @@ public class LoginPage extends BasePage {
 	private By btnNo = By.id("idBtn_Back");
 	private By fldEmail = By.xpath("//input[@name='loginfmt' and @type='email']");
 	private By fldPassword = By.xpath("//input[@name='passwd' and @type='password']");
+	private By txtStaySignedIn = By.xpath("//div[contains(text(),'Stay signed in')]");
 
 	public void loginWith(String username, String password) {
 		Log.step("Logging into the application with " + username + "/" + password);
@@ -23,18 +28,36 @@ public class LoginPage extends BasePage {
 	}
 	
 	public void loginWithAdmin() {
+		
+		String email = null;
+		String pass = null;
+		
+		try (InputStream input = getClass().getClassLoader().getResourceAsStream("credentials.properties")) {
+            Properties prop = new Properties();
+            if (input == null) {
+                System.out.println("Sorry, unable to find credentials.properties");
+                return;
+            }
+            prop.load(input);
+            email = prop.getProperty("app.usermail");
+            pass = prop.getProperty("app.userspass");
+		} catch (IOException ex) {
+            ex.printStackTrace();
+        }
 		Log.step("Logging into the application with admin user");
-		setText(fldEmail, "david.henderickx@dosp.cloud");
+		setText(fldEmail, email);
 		click(btnNext);
-		setText(fldPassword, "Testing001!");
+		setText(fldPassword, pass);
 		click(btnNext);
 	}
 	
 	public void stayLoggedIn(Boolean wantToStayLoggedIn) {
-		if (wantToStayLoggedIn) {
-			click(btnNext);
-		} else {
-			click(btnNo);
+		if (isElementVisible(txtStaySignedIn, 30000)) {
+			if (wantToStayLoggedIn) {
+				click(btnNext);
+			} else {
+				click(btnNo);
+			}
 		}
 	}
 

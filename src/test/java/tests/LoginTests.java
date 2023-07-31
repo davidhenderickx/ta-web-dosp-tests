@@ -12,11 +12,11 @@ import frmwrk.settings.RunSettings;
 public class LoginTests extends BaseTest {
  
     
-
 	@Test(priority = 1, description = "Log in with correct username and password")
 	public void loggingInWithCorrectUsernamePassword(Method method) {
 		loginPage.loginWithAdmin();
-		//Assert.assertTrue(welcomePage.isWelcomeMessageDisplayed(),"The Welcome message is not shown");
+		loginPage.stayLoggedIn(false);
+		Assert.assertTrue(homePage.isShown(),"The login was not correct");
 	}
 
 	

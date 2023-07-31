@@ -29,5 +29,6 @@ target/
 
 # Project
 /test-output
+credentials.properties
 
 

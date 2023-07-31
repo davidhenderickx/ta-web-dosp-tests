@@ -12,14 +12,14 @@ import pages.LoginPage_Elements;
 import pages.LoginPage;
 import pages.LoginPage_PageFactory;
 import pages.MenuPage;
-import pages.WelcomePage;
+import pages.HomePage;
 
 public class BaseTest extends frmwrk.testbase.BaseTest {
 
 	public AdminPage adminPage;
 	public LoginPage loginPage;
 	public MenuPage menuPage;
-	public WelcomePage welcomePage;
+	public HomePage homePage;
 
 	public int standardInitialWaitTimeOut = 5000;
 	public int exerciseSBUTTimeTimeOut = 69000;
@@ -33,7 +33,7 @@ public class BaseTest extends frmwrk.testbase.BaseTest {
 		adminPage = new AdminPage();
 		loginPage = new LoginPage();
 		menuPage = new MenuPage();
-		welcomePage = new WelcomePage();
+		homePage = new HomePage();
 
 		DriverManager.getDriver().get("https://dosp-hsx-uat.crm4.dynamics.com/");
 
@@ -42,6 +42,11 @@ public class BaseTest extends frmwrk.testbase.BaseTest {
 	@AfterMethod(alwaysRun = true)
 	public void teardown() {
 		//DriverManager.KillDriver();
+	}
+	
+	public void login(String email, String password) {
+		loginPage.loginWithAdmin();
+		loginPage.stayLoggedIn(false);
 	}
 
 }
