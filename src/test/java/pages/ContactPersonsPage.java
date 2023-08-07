@@ -25,7 +25,7 @@ public class ContactPersonsPage extends BasePage {
 	Field fldEmail = new Field(By.xpath("//input[@data-id='emailaddress1.fieldControl-mail-text-input']"));
 	Field fldEmployeeNumber = new Field(By.xpath("//input[@data-id='dosp_employeenumber.fieldControl-text-box-text']"));
 	Field fldJobTitle = new Field(By.xpath("//input[@data-id='jobtitle.fieldControl-text-box-text']"));
-	SearchField fldAccount = new SearchField(By.xpath("//input[@data-id='dosp_employeenumber.fieldControl-text-box-text']"));
+	SearchField fldAccountName = new SearchField(By.xpath("//input[@data-id='parentcustomerid.fieldControl-LookupResultsDropdown_parentcustomerid_textInputBox_with_filter_new']"));
 	Field fldTelephone = new Field(By.xpath("//input[@data-id='telephone1.fieldControl-phone-text-input']"));
 	Field fldMobilePhone = new Field(By.xpath("//input[@data-id='mobilephone.fieldControl-phone-text-input']"));
 	Field fldSalutation = new Field(By.xpath("//input[@data-id='salutation.fieldControl-text-box-text']"));
@@ -50,6 +50,7 @@ public class ContactPersonsPage extends BasePage {
 		Log.info("Filling in the new contact person form");
 		fldFirstName.setText("David");
 		fldLastName.setText("Henderickx");
+		fldAccountName.searchFor("test", 2);
 		cbxLanguage.selectByVisibleText("Nederlands");
 		fldEmail.setText("ctgtesting@yopmail.com");
 		fldEmployeeNumber.setText("1503");
