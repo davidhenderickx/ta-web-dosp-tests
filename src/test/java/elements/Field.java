@@ -23,19 +23,18 @@ public class Field extends BaseElement {
 
 	@Override
 	public void setText(String text) {
-		Log.debug("Setting the text '" + text + "' on element " + by.toString());
+		Log.debug("Setting the text '" + text + "' on element " + by.toString());		
+		int tries = 0;	
 		waitUntilElementIsPresent(by, defaultTimeOut);
 		waitUntilElementIsVisible(by, defaultTimeOut);
 		WebElement element = getWebElement(by);
 		element.click();
-		waitForMilliseconds(200);
-		element.clear();
-		waitForMilliseconds(200);
-		element.clear();
-		waitForMilliseconds(200);
+		do {
+			element.clear();
+			tries++;
+		} while (!(element.getAttribute("value").equals("")) || (tries < 10));
 		element.sendKeys(text);
-		waitForMilliseconds(200);
-		element.sendKeys(Keys.TAB);	
+		element.sendKeys(Keys.TAB);
 		Log.debug("Text set of " + by.toString() + ": " + text);
 	}
 

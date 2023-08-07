@@ -17,7 +17,9 @@ public class ContactPersonsTests extends BaseTest {
 		login(null, null);
 		menuPage.ContactPersons();
 		contactPersonsPage.isShown();
-		contactPersonsPage.createNewContactPerson();
+		contactPersonsPage.openNewContactPersonForm();
+		contactPersonsPage.fillInNewContactPersonForm();
+		
 		
 	}
 

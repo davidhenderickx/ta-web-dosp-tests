@@ -27,6 +27,10 @@ public class SearchField extends BaseElement {
 		waitUntilElementIsVisible(by, defaultTimeOut);
 		WebElement element = getWebElement(by);
 		element.click();
+		
+		element.sendKeys(null);
+		
+		
 		waitForMilliseconds(200);
 		element.clear();
 		waitForMilliseconds(200);

@@ -5,7 +5,7 @@
         <listener class-name="frmwrk.listeners.TestListener"/>
     </listeners>
     <parameter name="ta.run.platform" value="WEB"/>
-    <parameter name="ta.web.browser" value="FIREFOX"/>
+    <parameter name="ta.web.browser" value="CHROME"/>
     <test name="LoginTest" >
         <classes>
             <class name="tests.LoginTests"/>

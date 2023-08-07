@@ -18,7 +18,7 @@ public class DatePickerField extends BaseElement {
 	private String datePickerXpath = "//div[contains(@id, 'DatePicker-Callout')]";
 	private String monthPickerXpath = datePickerXpath + "//div[contains(@class,'monthPickerWrapper')]";
 	
-	private Button btnMonthAndYear = new Button(By.xpath(datePickerXpath + "//button[contains(@class,'monthAndYear')]"));
+	private Button btnMonthAndYear = new Button(By.xpath(datePickerXpath + "//*[contains(@class,'monthAndYear') and @type='button']"));
 	
 	private BaseElement divMonthPicker = new BaseElement(By.xpath(monthPickerXpath));
 	private Button btnCurrentYear = new Button(By.xpath(monthPickerXpath + "//button[contains(@class,'currentItemButton')]/span"));
